@@ -9,12 +9,24 @@ const users = [
 ]
 
 router.get('/:id', (ctx) => {
-  console.log(ctx.params)
-  const user = users.find(u => u.id === ctx.params.id)
-  if (user) {
-    ctx.response.body = { code: 0, msg: '', result: { user } }
+  console.log(ctx.request.headers.token)
+  if (!ctx.request.headers.token) {
+    ctx.response.body = { code: 1, msg: '用户没登录' }
   } else {
-    ctx.response.body = { code: 1, msg: '没有该用户' }
+    const user = users.find(u => u.id === ctx.params.id)
+    if (user) {
+      ctx.response.body = { code: 0, msg: '', result: { user } }
+    } else {
+      ctx.response.body = { code: 1, msg: '没有该用户' }
+    }
+  }
+})
+
+router.post('/getUsers', (ctx) => {
+  ctx.response.body = {
+    code: 0,
+    msg: '',
+    result: users
   }
 })
 

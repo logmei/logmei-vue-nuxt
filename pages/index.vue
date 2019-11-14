@@ -6,12 +6,18 @@
       <nuxt-link to="/ours">
         logmei-vue-nuxt
       </nuxt-link>
-      <br >
+      <br>
+      <el-button @click="login">
+        登录
+      </el-button>
       <el-button @click="$router.push({name:'users-list',params:{id:'aaa'}})">
         用户列表
       </el-button>
       <el-button @click="$router.push({name:'users-detail',query:{id:'bbbb'}})">
         用户详情
+      </el-button>
+      <el-button @click="$router.push({name:'users-id',params:{id:'1'}})">
+        用户详情通过server端获取
       </el-button>
     </div>
   </div>
@@ -23,6 +29,11 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  methods: {
+    login () {
+      localStorage.setItem('token', 'token1234567890')
+    }
   }
 }
 </script>

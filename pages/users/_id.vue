@@ -1,5 +1,5 @@
 <template>
-  <div>用户id:{{ user }}</div>
+  <div>用户id:{{ user.name }}</div>
 </template>
 <script>
 export default {
